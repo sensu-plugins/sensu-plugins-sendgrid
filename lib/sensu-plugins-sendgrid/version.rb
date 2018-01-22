@@ -1,4 +1,4 @@
-module SensuPluginsSkel
+module SensuPluginsSendgrid
   module Version
     MAJOR = 0
     MINOR = 0
