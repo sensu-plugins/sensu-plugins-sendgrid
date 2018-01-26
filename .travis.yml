@@ -1,5 +1,31 @@
 language: ruby
+cache:
+- bundler
+before_install:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - gem install bundler -v 1.15
+install:
+- bundle install
 rvm:
-  - 2.2
-  - jruby
-  - 2.0.0-p247
+- 2.0
+notifications:
+  email:
+    recipients:
+    - sensu-plugin@sensu-plugins.io
+    on_success: change
+    on_failure: always
+script:
+- bundle exec rake default
+- gem build sensu-plugins-sendgrid.gemspec
+- gem install sensu-plugins-sendgrid-*.gem
+deploy:
+  provider: rubygems
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
+    rvm: 2.3.0
+    rvm: 2.4.1
+    repo: sensu-plugins/sensu-plugins-sendgrid
