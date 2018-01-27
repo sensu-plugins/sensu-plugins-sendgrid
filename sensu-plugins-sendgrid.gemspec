@@ -28,7 +28,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.required_ruby_version  = '>= 2.0.0'
   s.summary                = 'Sensu plugins for Sendgrid'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
-  s.version                = SensuPluginsSkel::Version::VER_STRING
+  s.version                = SensuPluginsSendgrid::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin', '~> 2.0'
 
