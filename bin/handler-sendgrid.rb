@@ -7,7 +7,7 @@
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
+require 'rubygems' if RUBY_VERSION < '2.1.0'
 require 'sensu-handler'
 require 'mail'
 require 'timeout'
@@ -97,4 +97,3 @@ class Sendgrid < Sensu::Handler
     end
   end
 end
-
