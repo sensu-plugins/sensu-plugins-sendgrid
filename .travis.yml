@@ -15,7 +15,7 @@ notifications:
     on_success: change
     on_failure: always
 script:
-- bundle exec rake default
+- bundle exec rake quick
 - gem build sensu-plugins-sendgrid.gemspec
 - gem install sensu-plugins-sendgrid-*.gem
 deploy:
