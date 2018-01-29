@@ -18,11 +18,11 @@ class Sendgrid < Sensu::Handler
   end
 
   def action_to_string
-   @event['action'].eql?('resolve') ? "RESOLVED" : "ALERT"
+    @event['action'].eql?('resolve') ? 'RESOLVED' : 'ALERT'
   end
 
   def default_config
-    #_ Global Settings
+    # _ Global Settings
     smtp_address = settings['sendgrid']['smtp_address'] || 'smtp.sendgrid.net'
     smtp_port = settings['sendgrid']['smtp_port'] || '587'
     smtp_domain = settings['sendgrid']['smtp_domain'] || 'localhost.localdomain'
@@ -31,27 +31,27 @@ class Sendgrid < Sensu::Handler
     smtp_auth = settings['sendgrid']['smtp_auth'] || 'plain'
 
     defaults = {
-      "mail_from" => settings['sendgrid']['mail_from'] || 'localhost',
-      "mail_to" => settings['sendgrid']['mail_to'] || 'root@localhost'
+      'mail_from' => settings['sendgrid']['mail_from'] || 'localhost',
+      'mail_to' => settings['sendgrid']['mail_to'] || 'root@localhost'
     }
 
     # Merge per-check configs
     defaults.merge!(@event['check']['sendgrid'] || {})
 
     params = {
-      :mail_to   => defaults['mail_to'],
-      :mail_from => defaults['mail_from'],
-      :smtp_addr => smtp_address,
-      :smtp_port => smtp_port,
-      :smtp_domain => smtp_domain,
-      :smtp_user => smtp_user,
-      :smtp_password => smtp_password,
-      :smtp_auth => smtp_auth
+      mail_to: defaults['mail_to'],
+      mail_from: defaults['mail_from'],
+      smtp_addr: smtp_address,
+      smtp_port: smtp_port,
+      smtp_domain: smtp_domain,
+      smtp_user: smtp_user,
+      smtp_password: smtp_password,
+      smtp_auth: smtp_auth
     }
   end
 
   def handle
-    params = self.default_config
+    params = default_config
 
     body = <<-BODY.gsub(/^ {14}/, '')
             #{@event['check']['output']}
@@ -71,14 +71,13 @@ class Sendgrid < Sensu::Handler
     subject = "#{action_to_string} - #{short_name}: #{@event['check']['notification']}"
 
     Mail.defaults do
-      delivery_method :smtp, {
-        :address              => params[:smtp_addr],
-        :port                 => params[:smtp_port],
-        :domain               => params[:smtp_domain],
-        :user_name            => params[:smtp_user],
-        :password             => params[:smtp_password],
-        :enable_starttls_auto => true
-      }
+      delivery_method :smtp,
+                      address: params[:smtp_addr],
+                      port: params[:smtp_port],
+                      domain: params[:smtp_domain],
+                      user_name: params[:smtp_user],
+                      password: params[:smtp_password],
+                      enable_starttls_auto: true
     end
 
     begin
