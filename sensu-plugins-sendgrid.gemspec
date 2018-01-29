@@ -26,7 +26,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
   s.require_paths          = ['lib']
   s.required_ruby_version  = '>= 1.9.0'
-  s.summary                = 'Sensu plugins for Sendgrid'
+  s.summary                = 'Sensu plugins for Sendgrid Email Delivery Service'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsSendgrid::Version::VER_STRING
 
