@@ -38,7 +38,7 @@ class Sendgrid < Sensu::Handler
     # Merge per-check configs
     defaults.merge!(@event['check']['sendgrid'] || {})
 
-    params = {
+    {
       mail_to: defaults['mail_to'],
       mail_from: defaults['mail_from'],
       smtp_addr: smtp_address,
