@@ -2,8 +2,9 @@ language: ruby
 cache:
 - bundler
 before_install:
-  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
-  - gem install bundler -v 1.15
+- sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables
+  -N DOCKER )
+- gem install bundler -v 1.15
 install:
 - bundle install
 rvm:
@@ -27,9 +28,7 @@ deploy:
   on:
     tags: true
     all_branches: true
-    rvm: 2.0
-    rvm: 2.1
-    rvm: 2.2
-    rvm: 2.3.0
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-sendgrid
+  api_key:
+    secure: PTcji0tnnc6HCmKhXiBmeGRN7VNJeq+7+7zMcG7ZpYIR4yPpVDsG5p2HA6QDvbYpapuwR47JoRs5jDqrNbfoAaWZw85oWlHpch1UekjFkSN1SIGKDvwm+uIS/C2pq2Oa/ALmw8JoUKPjFgAU+nnoYxdT5RwUXQvmVXrKavTrh+x9mpzFvyMBPyC8yXMp+svxyCnKM4dHVkaFolU825sCYrsbIYaMVP5KPADXtHCngzIUy2Lfxqgb82NFpvpH0NrGiZ/19bjxxtrHwtLpwD09vvuVboECz+FC/MRpSnvQ/iwc1J+MGNca1JoxM9hXw5iSOFzDqmyT/GQ0is8tRqFC6scKi280Zm2CRKoclgls6yTEFrnAF8WhMg9OJ86jMtJjY2qRUql4HjOCW1gwMykYUTxTucIL2dN6+f+me5Lsucm9113Zq3mO26UwBRBm22D27tqiZ5xu4WrXmejYkai73kpk/q/gEcMofK88F5cpQG5YfY6u3indvweZmeTk7TEC09DfrnXGWo/t1CAKzqs49F9u+hJhevN3WJLxGb4fX+a8MYwW9QVA0The6XcHZr/gQ8IrAIJAii8RvV8eTv7X5XizMuzYHkzKeq7IkfzbEgYS4U/VLajcMo3bYw1UZIi9KEPlK8H+xsVKHCrF0RjXZ0CJHf4w18XYdyUKdVc8l4g=
