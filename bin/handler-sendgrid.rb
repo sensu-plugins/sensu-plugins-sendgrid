@@ -62,9 +62,9 @@ class Sendgrid < Sensu::Handler
             Status:  #{@event['check']['status']}
             Occurrences:  #{@event['occurrences']}
             Environment:  #{@event['client']['environment']}
-            Uchiwa Host Link: https://sensu.aerserv.com/#/client/Sensu-localhost/#{@event['client']['name']}
+            Uchiwa Host Link: https://mysensuserver/#/client/Sensu-localhost/#{@event['client']['name']}
             AWS Host Link: https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:search=#{@event['client']['name']};sort=instanceType
-            Uchiwa Alert Link: https://sensu.aerserv.com/#/client/Sensu-localhost/#{@event['client']['name']}?check=#{@event['check']['name']}
+            Uchiwa Alert Link: https://mysensuserver/#/client/Sensu-localhost/#{@event['client']['name']}?check=#{@event['check']['name']}
           BODY
     body << "Runbook:  #{@event['check']['runbook']}" if @event['check']['runbook']
     subject = "#{action_to_string} - #{short_name}: #{@event['check']['notification']}"
